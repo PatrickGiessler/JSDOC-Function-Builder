@@ -1,12 +1,15 @@
 {
-  "name": "Getting Started Example",
+  "name": "Sample Extension Commands extension",
+  "description": "Press Ctrl+Shift+F to open the browser action popup, press Ctrl+Shift+Y to send an event.",
   "version": "1.0",
-  "description": "Build an Extension!",
+  "manifest_version": 2,
   "permissions": [
     "declarativeContent",
-    "commands",
     "activeTab",
-    "storage"
+    "storage",
+    "http://*/",
+    "https://*/",
+    "file:///*"
   ],
   "background": {
     "scripts": [
@@ -14,29 +17,22 @@
     ],
     "persistent": false
   },
-  "page_action": {
-    "default_popup": "popup.html",
-    "default_icon": {
-      "16": "images/get_started16.png",
-      "32": "images/get_started32.png",
-      "48": "images/get_started48.png",
-      "128": "images/get_started128.png"
-    }
-  },
-  "icons": {
-    "16": "images/get_started16.png",
-    "32": "images/get_started32.png",
-    "48": "images/get_started48.png",
-    "128": "images/get_started128.png"
+  "browser_action": {
+    "default_popup": "browser_action.html"
   },
   "commands": {
-    "_execute_page_action": {
+    "toggle-feature": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Y",
+        "mac": "MacCtrl+Shift+Y"
+      },
+      "description": "Send a 'toggle-feature' event to the extension"
+    },
+    "_execute_browser_action": {
       "suggested_key": {
         "default": "Ctrl+Shift+F",
         "mac": "MacCtrl+Shift+F"
-      },
-      "description": "Opens hello.html"
+      }
     }
-  },
-  "manifest_version": 2
+  }
 }
